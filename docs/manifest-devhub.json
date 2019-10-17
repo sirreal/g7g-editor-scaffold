@@ -1224,6 +1224,12 @@
 		"parent": "packages"
 	},
 	{
+		"title": "@wordpress/editor-scaffold",
+		"slug": "packages-editor-scaffold",
+		"markdown_source": "../packages/editor-scaffold/README.md",
+		"parent": "packages"
+	},
+	{
 		"title": "@wordpress/editor",
 		"slug": "packages-editor",
 		"markdown_source": "../packages/editor/README.md",

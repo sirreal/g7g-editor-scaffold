@@ -1,8 +1,7 @@
 module.exports = function( api ) {
 	let wpBuildOpts = {};
-	const isWPBuild = ( name ) => [ 'WP_BUILD_MAIN', 'WP_BUILD_MODULE' ].some(
-		( buildName ) => name === buildName
-	);
+	const isWPBuild = ( name ) =>
+		[ 'WP_BUILD_MAIN', 'WP_BUILD_MODULE' ].some( ( buildName ) => name === buildName );
 
 	const isTestEnv = api.env() === 'test';
 
@@ -24,7 +23,7 @@ module.exports = function( api ) {
 		} else {
 			opts.modules = false;
 			opts.targets = {
-				browsers: require( '@wordpress/browserslist-config' ),
+				browsers: 'chrome >= 77',
 			};
 		}
 
@@ -49,7 +48,7 @@ module.exports = function( api ) {
 			opts.useESModules = wpBuildOpts.useESModules;
 		}
 
-		return [ require.resolve( '@babel/plugin-transform-runtime' ), opts ];
+		return [] || [ require.resolve( '@babel/plugin-transform-runtime' ), opts ];
 	};
 
 	return {
@@ -65,12 +64,15 @@ module.exports = function( api ) {
 					isDefault: false,
 				},
 			],
-			[ require.resolve( '@babel/plugin-transform-react-jsx' ), {
-				pragma: 'createElement',
-				pragmaFrag: 'Fragment',
-			} ],
-			require.resolve( '@babel/plugin-proposal-async-generator-functions' ),
-			maybeGetPluginTransformRuntime(),
+			[
+				require.resolve( '@babel/plugin-transform-react-jsx' ),
+				{
+					pragma: 'createElement',
+					pragmaFrag: 'Fragment',
+				},
+			],
+			//require.resolve( '@babel/plugin-proposal-async-generator-functions' ),
+			// maybeGetPluginTransformRuntime(),
 		].filter( Boolean ),
 	};
 };

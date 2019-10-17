@@ -116,7 +116,7 @@ class Editor extends Component {
 								{ ...props }
 							>
 								<ErrorBoundary onError={ onError }>
-									<EditorInitialization postId={ postId } />
+									<EditorInitialization postId={ post.id } />
 									<Layout />
 									<KeyboardShortcuts shortcuts={ preventEventDiscovery } />
 								</ErrorBoundary>
