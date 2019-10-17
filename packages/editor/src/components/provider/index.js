@@ -144,13 +144,14 @@ class EditorProvider extends Component {
 		// When a block is installed from the inserter and is unused,
 		// it is removed when saving the post.
 		// Todo: move this to the edit-post package into a separate component.
-		if ( ! isEqual( this.props.downloadableBlocksToUninstall, prevProps.downloadableBlocksToUninstall ) ) {
+		if (
+			! isEqual( this.props.downloadableBlocksToUninstall, prevProps.downloadableBlocksToUninstall )
+		) {
 			this.props.downloadableBlocksToUninstall.forEach( ( blockType ) => {
 				this.props.uninstallBlock( blockType, noop, () => {
-					this.props.createWarningNotice(
-						__( 'Block previews can\'t uninstall.' ), {
-							id: UNINSTALL_ERROR_NOTICE_ID,
-						} );
+					this.props.createWarningNotice( __( "Block previews can't uninstall." ), {
+						id: UNINSTALL_ERROR_NOTICE_ID,
+					} );
 				} );
 				unregisterBlockType( blockType.name );
 			} );
@@ -183,24 +184,24 @@ class EditorProvider extends Component {
 			settings,
 			reusableBlocks,
 			hasUploadPermissions,
-			canUserUseUnfilteredHTML,
+			canUserUseUnfilteredHTML
 		);
 
 		return (
-			<EntityProvider kind="postType" type={ post.type } id={ post.id }>
-				<BlockEditorProvider
-					value={ blocks }
-					onInput={ resetEditorBlocksWithoutUndoLevel }
-					onChange={ resetEditorBlocks }
-					settings={ editorSettings }
-					useSubRegistry={ false }
-				>
-					{ children }
-					<ReusableBlocksButtons />
-					<ConvertToGroupButtons />
-					{ editorSettings.__experimentalBlockDirectory && <InserterMenuDownloadableBlocksPanel /> }
-				</BlockEditorProvider>
-			</EntityProvider>
+			//<EntityProvider kind="postType" type={ post.type } id={ post.id }>
+			<BlockEditorProvider
+				value={ blocks }
+				onInput={ resetEditorBlocksWithoutUndoLevel }
+				onChange={ resetEditorBlocks }
+				settings={ editorSettings }
+				useSubRegistry={ false }
+			>
+				{ children }
+				<ReusableBlocksButtons />
+				<ConvertToGroupButtons />
+				{ editorSettings.__experimentalBlockDirectory && <InserterMenuDownloadableBlocksPanel /> }
+			</BlockEditorProvider>
+			//</EntityProvider>
 		);
 	}
 }
@@ -218,7 +219,11 @@ export default compose( [
 		const { getInstalledBlockTypes } = select( 'core/block-directory' );
 		const { getBlocks } = select( 'core/block-editor' );
 
-		const downloadableBlocksToUninstall = differenceBy( getInstalledBlockTypes(), getBlocks(), 'name' );
+		const downloadableBlocksToUninstall = differenceBy(
+			getInstalledBlockTypes(),
+			getBlocks(),
+			'name'
+		);
 
 		return {
 			canUserUseUnfilteredHTML: canUserUseUnfilteredHTML(),
