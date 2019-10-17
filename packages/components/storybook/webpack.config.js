@@ -5,5 +5,9 @@ module.exports = ( { config } ) => {
 		enforce: 'pre',
 	} );
 
+	config.plugins = config.plugins.filter(
+		( plugin ) => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin'
+	);
+
 	return config;
 };

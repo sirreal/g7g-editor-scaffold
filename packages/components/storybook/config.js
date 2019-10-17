@@ -16,6 +16,7 @@ configure(
 	[
 		require.context( '../docs', true, /\/.+\.mdx$/ ),
 		require.context( '../src', true, /\/stories\/.+\.js$/ ),
+		require.context( '../../editor-scaffold/src', true, /\/stories\/.+\.js$/ ),
 	],
 	module
 );
