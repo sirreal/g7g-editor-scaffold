@@ -30,7 +30,7 @@
 	"main": "index.js",
 	"dependencies": {
 		"autoprefixer": "^9.4.5",
-		"postcss": "^7.0.13",
+		"postcss": "^8.2.10",
 		"postcss-color-function": "^4.0.1"
 	},
 	"publishConfig": {
