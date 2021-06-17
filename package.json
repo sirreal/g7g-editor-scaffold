@@ -132,7 +132,7 @@
 		"node-sass": "4.12.0",
 		"node-watch": "0.6.0",
 		"parcel-bundler": "1.12.3",
-		"postcss": "7.0.13",
+		"postcss": "7.0.36",
 		"progress": "2.0.3",
 		"react": "16.9.0",
 		"react-dom": "16.9.0",
